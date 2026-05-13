@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <PackageId>CalculadoraMedias.Core.Duarte</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Duarte</Authors>
+    <Company>Projeto Acadêmico</Company>
+    <Description>Biblioteca de classes para cálculo de média semestral, média final e status do aluno.</Description>
+    <PackageTags>calculadora;media;aluno;csharp;windowsforms</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+</Project>

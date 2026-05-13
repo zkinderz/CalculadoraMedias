@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="CalculadoraMedias.Core/CalculadoraMedias.Core.csproj" />
+  <Project Path="CalculadoraMedias.Desktop/CalculadoraMedias.Desktop.csproj" />
+  <Project Path="CalculadoraMedias.Tests/CalculadoraMedias.Tests.csproj" />
+</Solution>
