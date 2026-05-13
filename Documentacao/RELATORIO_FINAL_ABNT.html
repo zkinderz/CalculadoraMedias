@@ -1,0 +1,623 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório Final - Calculadora de Médias</title>
+
+    <style>
+        @page {
+            size: A4;
+            margin: 3cm 2cm 2cm 3cm;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            text-align: justify;
+        }
+
+        .page {
+            width: 21cm;
+            min-height: 29.7cm;
+            padding: 3cm 2cm 2cm 3cm;
+            margin: 0 auto;
+            box-sizing: border-box;
+            page-break-after: always;
+        }
+
+        .cover {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        h1 {
+            font-size: 14pt;
+            text-align: center;
+            text-transform: uppercase;
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 12pt;
+            text-transform: uppercase;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        h3 {
+            font-size: 12pt;
+            margin-top: 18px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            text-indent: 1.25cm;
+            margin: 0 0 12px 0;
+        }
+
+        .no-indent {
+            text-indent: 0;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .placeholder {
+            border: 2px dashed #777;
+            padding: 30px;
+            text-align: center;
+            margin: 20px 0 8px 0;
+            color: #555;
+            font-style: italic;
+        }
+
+        .caption {
+            text-align: center;
+            font-size: 10pt;
+            margin-bottom: 18px;
+        }
+
+        ul {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        li {
+            margin-bottom: 4px;
+        }
+
+        pre {
+            font-family: Consolas, monospace;
+            font-size: 10pt;
+            background: #f2f2f2;
+            padding: 10px;
+            border: 1px solid #ccc;
+            white-space: pre-wrap;
+            text-align: left;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+        }
+
+        td, th {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .sumario p {
+            text-indent: 0;
+            margin-bottom: 4px;
+        }
+
+        @media print {
+            .page {
+                margin: 0;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="page cover">
+        <div>
+            <p class="center no-indent bold">UNIVERSIDADE PAULISTA – UNIP</p>
+            <p class="center no-indent bold">CAMPUS JUNDIAÍ</p>
+        </div>
+
+        <div>
+            <p class="center no-indent bold">CALCULADORA DE MÉDIAS ACADÊMICAS</p>
+            <p class="center no-indent">
+                Aplicação Desktop em C# com Windows Forms, Biblioteca de Classes, Testes Unitários e Pacote NuGet
+            </p>
+        </div>
+
+        <div>
+            <p class="center no-indent bold">NOME DOS INTEGRANTES DO GRUPO</p>
+            <p class="center no-indent">[INSERIR NOME DO INTEGRANTE 1] – RA: [INSERIR RA]</p>
+            <p class="center no-indent">[INSERIR NOME DO INTEGRANTE 2] – RA: [INSERIR RA]</p>
+            <p class="center no-indent">[INSERIR NOME DO INTEGRANTE 3] – RA: [INSERIR RA]</p>
+            <p class="center no-indent">[INSERIR NOME DO INTEGRANTE 4] – RA: [INSERIR RA]</p>
+            <br>
+            <p class="center no-indent">Curso: [INSERIR NOME DO CURSO]</p>
+            <p class="center no-indent">Disciplina: [INSERIR NOME DA DISCIPLINA]</p>
+            <p class="center no-indent">Professor(a): [INSERIR NOME DO PROFESSOR]</p>
+        </div>
+
+        <div>
+            <p class="center no-indent bold">JUNDIAÍ</p>
+            <p class="center no-indent bold">[INSERIR ANO]</p>
+        </div>
+    </section>
+
+    <section class="page cover">
+        <div>
+            <p class="center no-indent bold">[INSERIR NOME DOS INTEGRANTES DO GRUPO]</p>
+        </div>
+
+        <div>
+            <p class="center no-indent bold">CALCULADORA DE MÉDIAS ACADÊMICAS</p>
+            <p class="center no-indent">
+                Aplicação Desktop em C# com Windows Forms, Biblioteca de Classes, Testes Unitários e Pacote NuGet
+            </p>
+        </div>
+
+        <div style="width: 50%; margin-left: auto;">
+            <p class="no-indent">
+                Relatório acadêmico apresentado à Universidade Paulista – UNIP, Campus Jundiaí, como requisito parcial para avaliação na disciplina de [INSERIR NOME DA DISCIPLINA], do curso de [INSERIR NOME DO CURSO].
+            </p>
+            <p class="no-indent">
+                Professor(a): [INSERIR NOME DO PROFESSOR]
+            </p>
+        </div>
+
+        <div>
+            <p class="center no-indent bold">JUNDIAÍ</p>
+            <p class="center no-indent bold">[INSERIR ANO]</p>
+        </div>
+    </section>
+
+    <section class="page">
+        <h1>RESUMO</h1>
+
+        <p>
+            Este relatório apresenta o desenvolvimento de uma aplicação desktop denominada Calculadora de Médias Acadêmicas, criada com a linguagem C# e a tecnologia Windows Forms. O sistema tem como objetivo calcular a média semestral e a média final de um aluno, considerando as notas de NP1, NP2, PIM e Exame, além de informar automaticamente o status acadêmico do estudante.
+        </p>
+
+        <p>
+            O projeto foi estruturado em três partes principais: uma biblioteca de classes responsável pelas regras de negócio, uma aplicação desktop para interação com o usuário e um projeto de testes unitários utilizando xUnit. Também foram geradas evidências técnicas, como a DLL da biblioteca, o pacote NuGet, documentação em arquivos Markdown, diagrama UML, User Stories e versionamento do código no GitHub.
+        </p>
+
+        <p>
+            A solução desenvolvida permite validar entradas de dados, impedir notas inválidas, calcular médias com arredondamento adequado e exibir os resultados ao usuário de forma simples e objetiva. Dessa forma, o trabalho atende aos requisitos propostos, demonstrando a aplicação prática de conceitos de programação orientada a objetos, separação de responsabilidades, testes automatizados, documentação técnica e versionamento de software.
+        </p>
+
+        <p class="no-indent">
+            <strong>Palavras-chave:</strong> C#. Windows Forms. Testes Unitários. xUnit. NuGet. GitHub. Média Acadêmica.
+        </p>
+    </section>
+
+    <section class="page sumario">
+        <h1>SUMÁRIO</h1>
+
+        <p>1 INTRODUÇÃO</p>
+        <p>2 OBJETIVOS</p>
+        <p>2.1 Objetivo geral</p>
+        <p>2.2 Objetivos específicos</p>
+        <p>3 JUSTIFICATIVA</p>
+        <p>4 FUNDAMENTAÇÃO TEÓRICA</p>
+        <p>5 METODOLOGIA</p>
+        <p>6 DESENVOLVIMENTO DO SISTEMA</p>
+        <p>6.1 Estrutura do projeto</p>
+        <p>6.2 Regras de negócio</p>
+        <p>6.3 Interface gráfica</p>
+        <p>6.4 Biblioteca de classes</p>
+        <p>6.5 Testes unitários</p>
+        <p>6.6 Documentação</p>
+        <p>6.7 Geração da DLL</p>
+        <p>6.8 Geração do pacote NuGet</p>
+        <p>6.9 Versionamento no GitHub</p>
+        <p>7 RESULTADOS OBTIDOS</p>
+        <p>8 CONCLUSÃO</p>
+        <p>REFERÊNCIAS</p>
+        <p>APÊNDICES</p>
+    </section>
+
+    <section class="page">
+        <h1>1 INTRODUÇÃO</h1>
+
+        <p>
+            O uso de sistemas computacionais para automatizar cálculos acadêmicos contribui para a redução de erros manuais e facilita a análise do desempenho dos alunos. Em ambientes educacionais, o cálculo de médias é uma tarefa recorrente, sendo necessário considerar diferentes avaliações, pesos e critérios de aprovação.
+        </p>
+
+        <p>
+            Neste contexto, foi desenvolvido o projeto Calculadora de Médias Acadêmicas, uma aplicação desktop construída em C# com Windows Forms. O sistema permite informar as notas de NP1, NP2 e PIM para calcular a média semestral. Caso o aluno fique em exame, o sistema habilita o campo de nota do exame e calcula a média final.
+        </p>
+
+        <p>
+            Além da interface gráfica, o projeto foi estruturado com uma biblioteca de classes separada, responsável pelas regras de negócio. Essa separação permite maior organização, manutenção e reaproveitamento do código. Também foram implementados testes unitários com xUnit para validar os principais métodos do sistema.
+        </p>
+
+        <p>
+            O projeto contempla ainda documentação técnica, User Stories, diagrama UML, geração da DLL, criação de pacote NuGet e envio do código-fonte para o GitHub.
+        </p>
+
+        <h1>2 OBJETIVOS</h1>
+
+        <h2>2.1 Objetivo geral</h2>
+
+        <p>
+            Desenvolver uma aplicação desktop em C# capaz de calcular a média semestral e a média final de alunos, exibindo automaticamente o status acadêmico conforme as regras estabelecidas.
+        </p>
+
+        <h2>2.2 Objetivos específicos</h2>
+
+        <ul>
+            <li>Criar uma aplicação desktop utilizando Windows Forms.</li>
+            <li>Desenvolver uma biblioteca de classes para concentrar as regras de negócio.</li>
+            <li>Calcular a média semestral a partir das notas NP1, NP2 e PIM.</li>
+            <li>Calcular a média final considerando a média semestral e a nota do exame.</li>
+            <li>Definir automaticamente o status do aluno.</li>
+            <li>Validar notas informadas pelo usuário.</li>
+            <li>Criar testes unitários utilizando xUnit.</li>
+            <li>Gerar a DLL da biblioteca.</li>
+            <li>Criar um pacote NuGet.</li>
+            <li>Documentar o projeto com README, User Stories e UML.</li>
+            <li>Versionar e publicar o projeto no GitHub.</li>
+        </ul>
+    </section>
+
+    <section class="page">
+        <h1>3 JUSTIFICATIVA</h1>
+
+        <p>
+            O desenvolvimento deste projeto justifica-se pela necessidade de aplicar, de forma prática, conceitos fundamentais de desenvolvimento de software, como programação orientada a objetos, modularização, testes automatizados e documentação.
+        </p>
+
+        <p>
+            A separação entre a interface gráfica e a biblioteca de regras de negócio permite que o sistema seja mais organizado e de fácil manutenção. Além disso, a implementação de testes unitários garante maior confiabilidade nos cálculos realizados.
+        </p>
+
+        <p>
+            A criação da DLL e do pacote NuGet demonstra a possibilidade de reutilização da biblioteca em outros projetos, enquanto o uso do GitHub possibilita o versionamento e compartilhamento do código-fonte.
+        </p>
+
+        <h1>4 FUNDAMENTAÇÃO TEÓRICA</h1>
+
+        <h2>4.1 Linguagem C#</h2>
+
+        <p>
+            C# é uma linguagem de programação moderna, orientada a objetos e desenvolvida pela Microsoft. Ela é amplamente utilizada no desenvolvimento de aplicações desktop, web, mobile e serviços. No presente projeto, C# foi utilizada para construir tanto a interface gráfica quanto a biblioteca de regras de negócio.
+        </p>
+
+        <h2>4.2 Windows Forms</h2>
+
+        <p>
+            Windows Forms é uma tecnologia da plataforma .NET utilizada para criação de aplicações desktop para o sistema operacional Windows. Ela permite desenvolver interfaces gráficas com botões, caixas de texto, rótulos e demais componentes visuais.
+        </p>
+
+        <h2>4.3 Biblioteca de classes</h2>
+
+        <p>
+            Uma biblioteca de classes é um projeto separado que contém classes reutilizáveis. No sistema desenvolvido, a biblioteca CalculadoraMedias.Core concentra as regras de cálculo, validação e definição de status do aluno.
+        </p>
+
+        <h2>4.4 Testes unitários com xUnit</h2>
+
+        <p>
+            Testes unitários são utilizados para verificar se pequenas partes do sistema funcionam corretamente. Neste projeto, foi utilizado o framework xUnit para testar os métodos da classe CalculadoraMediaService.
+        </p>
+
+        <h2>4.5 GitHub e versionamento</h2>
+
+        <p>
+            O GitHub é uma plataforma de hospedagem de código-fonte baseada em Git. Ele permite versionar, armazenar e compartilhar projetos de software. Neste trabalho, o GitHub foi utilizado para publicar o projeto e manter seu histórico de desenvolvimento.
+        </p>
+
+        <h2>4.6 Pacote NuGet</h2>
+
+        <p>
+            NuGet é o gerenciador de pacotes da plataforma .NET. Ele permite empacotar bibliotecas e distribuí-las para reutilização em outros projetos. Neste trabalho, foi gerado um pacote NuGet da biblioteca CalculadoraMedias.Core.
+        </p>
+    </section>
+
+    <section class="page">
+        <h1>5 METODOLOGIA</h1>
+
+        <p>
+            A metodologia utilizada para o desenvolvimento do projeto foi baseada nas seguintes etapas:
+        </p>
+
+        <ul>
+            <li>Levantamento dos requisitos do sistema.</li>
+            <li>Definição das regras de cálculo da média semestral e final.</li>
+            <li>Criação da solução .NET com três projetos.</li>
+            <li>Implementação das classes de modelo e serviço.</li>
+            <li>Desenvolvimento da interface gráfica em Windows Forms.</li>
+            <li>Criação e execução de testes unitários.</li>
+            <li>Geração da DLL da biblioteca.</li>
+            <li>Criação do pacote NuGet.</li>
+            <li>Elaboração da documentação técnica.</li>
+            <li>Versionamento e publicação no GitHub.</li>
+        </ul>
+
+        <h1>6 DESENVOLVIMENTO DO SISTEMA</h1>
+
+        <h2>6.1 Estrutura do projeto</h2>
+
+        <p>
+            O projeto foi organizado em três módulos principais: CalculadoraMedias.Core, CalculadoraMedias.Desktop e CalculadoraMedias.Tests. O projeto Core contém as regras de negócio, o projeto Desktop contém a interface gráfica e o projeto Tests contém os testes unitários.
+        </p>
+
+        <pre>
+CalculadoraMedias
+├── CalculadoraMedias.Core
+├── CalculadoraMedias.Desktop
+└── CalculadoraMedias.Tests
+        </pre>
+
+        <div class="placeholder">INSERIR PRINT DA ESTRUTURA DO PROJETO</div>
+        <div class="caption">Figura 1 – Estrutura do projeto no ambiente de desenvolvimento. Fonte: Elaborado pelos autores.</div>
+
+        <h2>6.2 Regras de negócio</h2>
+
+        <p>
+            A média semestral é calculada considerando os pesos de 40% para NP1, 40% para NP2 e 20% para PIM.
+        </p>
+
+        <pre>
+Média Semestral = NP1 × 0,4 + NP2 × 0,4 + PIM × 0,2
+        </pre>
+
+        <p class="no-indent">
+            As regras de status semestral são:
+        </p>
+
+        <ul>
+            <li>Média Semestral maior ou igual a 7,0: Aprovado.</li>
+            <li>Média Semestral menor que 4,0: Reprovado.</li>
+            <li>Média Semestral entre 4,0 e 6,9: Em Exame.</li>
+        </ul>
+
+        <p>
+            Caso o aluno fique em exame, a média final é calculada pela média entre a média semestral e a nota do exame.
+        </p>
+
+        <pre>
+Média Final = (Média Semestral + Exame) / 2
+        </pre>
+
+        <p class="no-indent">
+            As regras de status final são:
+        </p>
+
+        <ul>
+            <li>Média Final maior ou igual a 5,0: Aprovado.</li>
+            <li>Média Final menor que 5,0: Reprovado.</li>
+        </ul>
+    </section>
+
+    <section class="page">
+        <h2>6.3 Interface gráfica</h2>
+
+        <p>
+            A interface gráfica foi desenvolvida em Windows Forms e possui campos para entrada das notas NP1, NP2, PIM e Exame. Também apresenta campos de resultado para média semestral, média final e status do aluno.
+        </p>
+
+        <div class="placeholder">INSERIR PRINT DA TELA INICIAL DA APLICAÇÃO</div>
+        <div class="caption">Figura 2 – Tela inicial da aplicação. Fonte: Elaborado pelos autores.</div>
+
+        <div class="placeholder">INSERIR PRINT DO ALUNO APROVADO DIRETO</div>
+        <div class="caption">Figura 3 – Exemplo de aluno aprovado pela média semestral. Fonte: Elaborado pelos autores.</div>
+
+        <div class="placeholder">INSERIR PRINT DO ALUNO EM EXAME</div>
+        <div class="caption">Figura 4 – Exemplo de aluno em exame. Fonte: Elaborado pelos autores.</div>
+
+        <div class="placeholder">INSERIR PRINT DO ALUNO REPROVADO APÓS EXAME</div>
+        <div class="caption">Figura 5 – Exemplo de aluno reprovado após exame. Fonte: Elaborado pelos autores.</div>
+
+        <h2>6.4 Biblioteca de classes</h2>
+
+        <p>
+            A biblioteca CalculadoraMedias.Core foi criada para concentrar as regras de cálculo e validação. Ela contém as classes StatusAluno, ResultadoMedia e CalculadoraMediaService.
+        </p>
+
+        <p>
+            A classe CalculadoraMediaService possui métodos responsáveis por calcular a média semestral, calcular a média final, validar notas, validar pesos e definir o status do aluno.
+        </p>
+
+        <h2>6.5 Testes unitários</h2>
+
+        <p>
+            Foram criados testes unitários utilizando xUnit para validar o funcionamento da biblioteca de classes. Os testes verificam o cálculo da média semestral, cálculo da média final, definição dos status e validação de notas inválidas.
+        </p>
+
+        <div class="placeholder">INSERIR PRINT DO TERMINAL COM DOTNET TEST</div>
+        <div class="caption">Figura 6 – Execução dos testes unitários com xUnit. Fonte: Elaborado pelos autores.</div>
+    </section>
+
+    <section class="page">
+        <h2>6.6 Documentação</h2>
+
+        <p>
+            A documentação do projeto foi criada utilizando arquivos Markdown. Foram elaborados os documentos README.md, USER_STORIES.md e UML.md.
+        </p>
+
+        <div class="placeholder">INSERIR PRINT DO README.MD</div>
+        <div class="caption">Figura 7 – Arquivo README.md do projeto. Fonte: Elaborado pelos autores.</div>
+
+        <div class="placeholder">INSERIR PRINT DO USER_STORIES.MD</div>
+        <div class="caption">Figura 8 – User Stories do projeto. Fonte: Elaborado pelos autores.</div>
+
+        <div class="placeholder">INSERIR PRINT DO UML.MD</div>
+        <div class="caption">Figura 9 – Diagrama UML do projeto. Fonte: Elaborado pelos autores.</div>
+
+        <h2>6.7 Geração da DLL</h2>
+
+        <p>
+            Após a implementação da biblioteca de classes, foi gerada a DLL do projeto CalculadoraMedias.Core. A DLL permite reutilizar as regras de negócio em outros sistemas .NET.
+        </p>
+
+        <pre>
+dotnet build .\CalculadoraMedias.Core\CalculadoraMedias.Core.csproj -c Release
+        </pre>
+
+        <div class="placeholder">INSERIR PRINT DA PASTA ENTREGADLL CONTENDO A DLL</div>
+        <div class="caption">Figura 10 – DLL gerada da biblioteca CalculadoraMedias.Core. Fonte: Elaborado pelos autores.</div>
+
+        <h2>6.8 Geração do pacote NuGet</h2>
+
+        <p>
+            Também foi gerado um pacote NuGet da biblioteca, permitindo sua distribuição e reutilização. O pacote foi criado a partir do projeto CalculadoraMedias.Core.
+        </p>
+
+        <pre>
+dotnet pack .\CalculadoraMedias.Core\CalculadoraMedias.Core.csproj -c Release -o .\EntregaNuGet
+        </pre>
+
+        <div class="placeholder">INSERIR PRINT DA PASTA ENTREGANUGET CONTENDO O PACOTE .NUPKG</div>
+        <div class="caption">Figura 11 – Pacote NuGet gerado. Fonte: Elaborado pelos autores.</div>
+
+        <h2>6.9 Versionamento no GitHub</h2>
+
+        <p>
+            O projeto foi versionado utilizando Git e publicado no GitHub. O repositório contém o código-fonte, documentação, DLL gerada e pacote NuGet.
+        </p>
+
+        <p class="no-indent">
+            Link do repositório:
+        </p>
+
+        <pre>
+https://github.com/zkinderz/CalculadoraMedias
+        </pre>
+
+        <div class="placeholder">INSERIR PRINT DO PUSH REALIZADO COM SUCESSO NO TERMINAL</div>
+        <div class="caption">Figura 12 – Envio do projeto para o GitHub realizado com sucesso. Fonte: Elaborado pelos autores.</div>
+    </section>
+
+    <section class="page">
+        <h1>7 RESULTADOS OBTIDOS</h1>
+
+        <p>
+            Ao final do desenvolvimento, obteve-se uma aplicação funcional capaz de realizar o cálculo de médias acadêmicas com validação de dados e definição automática do status do aluno.
+        </p>
+
+        <p class="no-indent">
+            Os principais resultados alcançados foram:
+        </p>
+
+        <ul>
+            <li>Aplicação desktop funcional em Windows Forms.</li>
+            <li>Biblioteca de classes separada para regras de negócio.</li>
+            <li>Cálculo correto da média semestral.</li>
+            <li>Cálculo correto da média final.</li>
+            <li>Validação de notas inválidas.</li>
+            <li>Exibição automática do status do aluno.</li>
+            <li>Testes unitários executados com sucesso.</li>
+            <li>Geração da DLL da biblioteca.</li>
+            <li>Criação do pacote NuGet.</li>
+            <li>Documentação técnica em Markdown.</li>
+            <li>Versionamento e publicação do projeto no GitHub.</li>
+        </ul>
+
+        <h1>8 CONCLUSÃO</h1>
+
+        <p>
+            O desenvolvimento da Calculadora de Médias Acadêmicas permitiu aplicar conceitos importantes de engenharia e desenvolvimento de software. A utilização de uma biblioteca de classes separada tornou o projeto mais organizado, facilitando a manutenção e o reaproveitamento do código.
+        </p>
+
+        <p>
+            A criação da interface em Windows Forms possibilitou uma interação simples e objetiva com o usuário. Além disso, os testes unitários com xUnit contribuíram para verificar a confiabilidade das regras de negócio implementadas.
+        </p>
+
+        <p>
+            A geração da DLL e do pacote NuGet demonstrou a possibilidade de distribuição da biblioteca para outros projetos. O uso do GitHub permitiu versionar e disponibilizar o código-fonte de forma organizada.
+        </p>
+
+        <p>
+            Dessa forma, conclui-se que o projeto atingiu os objetivos propostos, apresentando uma solução funcional, documentada e validada por testes.
+        </p>
+    </section>
+
+    <section class="page">
+        <h1>REFERÊNCIAS</h1>
+
+        <p class="no-indent">
+            MICROSOFT. Documentação do C#. Disponível em: https://learn.microsoft.com/pt-br/dotnet/csharp/. Acesso em: [INSERIR DATA DE ACESSO].
+        </p>
+
+        <p class="no-indent">
+            MICROSOFT. Windows Forms para .NET. Disponível em: https://learn.microsoft.com/pt-br/dotnet/desktop/winforms/. Acesso em: [INSERIR DATA DE ACESSO].
+        </p>
+
+        <p class="no-indent">
+            MICROSOFT. Comando dotnet build. Disponível em: https://learn.microsoft.com/pt-br/dotnet/core/tools/dotnet-build. Acesso em: [INSERIR DATA DE ACESSO].
+        </p>
+
+        <p class="no-indent">
+            MICROSOFT. Criar pacotes NuGet com .NET CLI. Disponível em: https://learn.microsoft.com/pt-br/nuget/create-packages/creating-a-package-dotnet-cli. Acesso em: [INSERIR DATA DE ACESSO].
+        </p>
+
+        <p class="no-indent">
+            XUNIT. xUnit.net Documentation. Disponível em: https://xunit.net/. Acesso em: [INSERIR DATA DE ACESSO].
+        </p>
+
+        <p class="no-indent">
+            GITHUB. GitHub Docs. Disponível em: https://docs.github.com/. Acesso em: [INSERIR DATA DE ACESSO].
+        </p>
+    </section>
+
+    <section class="page">
+        <h1>APÊNDICE A – PRINTS DO SISTEMA</h1>
+
+        <div class="placeholder">INSERIR PRINT DA TELA INICIAL</div>
+        <div class="caption">Figura 13 – Tela inicial do sistema. Fonte: Elaborado pelos autores.</div>
+
+        <div class="placeholder">INSERIR PRINT DE ALUNO APROVADO</div>
+        <div class="caption">Figura 14 – Aluno aprovado direto. Fonte: Elaborado pelos autores.</div>
+
+        <div class="placeholder">INSERIR PRINT DE ALUNO EM EXAME</div>
+        <div class="caption">Figura 15 – Aluno em exame. Fonte: Elaborado pelos autores.</div>
+
+        <div class="placeholder">INSERIR PRINT DE ALUNO REPROVADO APÓS EXAME</div>
+        <div class="caption">Figura 16 – Aluno reprovado após exame. Fonte: Elaborado pelos autores.</div>
+
+        <h1>APÊNDICE B – PRINTS TÉCNICOS</h1>
+
+        <div class="placeholder">INSERIR PRINT DOS TESTES UNITÁRIOS</div>
+        <div class="caption">Figura 17 – Testes unitários executados com sucesso. Fonte: Elaborado pelos autores.</div>
+
+        <div class="placeholder">INSERIR PRINT DA DLL</div>
+        <div class="caption">Figura 18 – DLL gerada. Fonte: Elaborado pelos autores.</div>
+
+        <div class="placeholder">INSERIR PRINT DO PACOTE NUGET</div>
+        <div class="caption">Figura 19 – Pacote NuGet gerado. Fonte: Elaborado pelos autores.</div>
+
+        <div class="placeholder">INSERIR PRINT DO GITHUB</div>
+        <div class="caption">Figura 20 – Projeto publicado no GitHub. Fonte: Elaborado pelos autores.</div>
+    </section>
+
+</body>
+</html>
