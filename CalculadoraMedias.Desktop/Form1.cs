@@ -8,6 +8,8 @@ namespace CalculadoraMedias.Desktop
     {
         private readonly CalculadoraMediaService _calculadoraService;
 
+        private PictureBox picLogo = null!;
+
         private TextBox txtNp1 = null!;
         private TextBox txtNp2 = null!;
         private TextBox txtPim = null!;
@@ -36,43 +38,62 @@ namespace CalculadoraMedias.Desktop
 
         private void ConfigurarTela()
         {
-            Text = "Calculadora de Médias";
-            Width = 540;
-            Height = 430;
+            Controls.Clear();
+
+            Text = "Calculadora de Médias - UNIP";
+            Width = 640;
+            Height = 520;
             StartPosition = FormStartPosition.CenterScreen;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             BackColor = Color.WhiteSmoke;
 
-            int labelX = 40;
-            int textX = 200;
-            int y = 35;
-            int espacamento = 40;
+            CriarLogoUnip();
 
             Label titulo = new Label
             {
-                Text = "Calculadora de Médias",
-                Left = 40,
-                Top = 10,
-                Width = 430,
-                Height = 25,
-                Font = new Font("Segoe UI", 12, FontStyle.Bold),
-                ForeColor = Color.DarkBlue
+                Text = "Calculadora de Médias Acadêmicas",
+                Left = 170,
+                Top = 25,
+                Width = 400,
+                Height = 30,
+                Font = new Font("Segoe UI", 14, FontStyle.Bold),
+                ForeColor = Color.DarkBlue,
+                TextAlign = ContentAlignment.MiddleLeft
             };
             Controls.Add(titulo);
 
-            y += 35;
+            Label subtitulo = new Label
+            {
+                Text = "Universidade Paulista - UNIP",
+                Left = 170,
+                Top = 58,
+                Width = 400,
+                Height = 25,
+                Font = new Font("Segoe UI", 10, FontStyle.Regular),
+                ForeColor = Color.DimGray,
+                TextAlign = ContentAlignment.MiddleLeft
+            };
+            Controls.Add(subtitulo);
+
+            int labelX = 60;
+            int textX = 230;
+            int y = 115;
+            int espacamento = 42;
 
             CriarLabel("NP1:", labelX, y);
             txtNp1 = CriarTextBox(textX, y);
+            txtNp1.KeyPress += PermitirApenasNumerosEVirgula;
 
             y += espacamento;
             CriarLabel("NP2:", labelX, y);
             txtNp2 = CriarTextBox(textX, y);
+            txtNp2.KeyPress += PermitirApenasNumerosEVirgula;
 
             y += espacamento;
             CriarLabel("PIM:", labelX, y);
             txtPim = CriarTextBox(textX, y);
+            txtPim.KeyPress += PermitirApenasNumerosEVirgula;
 
             y += espacamento;
             CriarLabel("Média Semestral:", labelX, y);
@@ -83,6 +104,7 @@ namespace CalculadoraMedias.Desktop
             y += espacamento;
             CriarLabel("Exame:", labelX, y);
             txtExame = CriarTextBox(textX, y);
+            txtExame.KeyPress += PermitirApenasNumerosEVirgula;
 
             y += espacamento;
             CriarLabel("Média Final:", labelX, y);
@@ -97,8 +119,8 @@ namespace CalculadoraMedias.Desktop
             {
                 Left = textX,
                 Top = y + 4,
-                Width = 250,
-                Height = 25,
+                Width = 280,
+                Height = 28,
                 Text = "Em Andamento",
                 ForeColor = Color.Black,
                 Font = new Font("Segoe UI", 10, FontStyle.Bold)
@@ -108,10 +130,11 @@ namespace CalculadoraMedias.Desktop
             btnSemestral = new Button
             {
                 Text = "Semestral",
-                Left = 40,
-                Top = 330,
-                Width = 110,
-                Height = 35
+                Left = 60,
+                Top = 415,
+                Width = 120,
+                Height = 38,
+                BackColor = Color.LightSteelBlue
             };
             btnSemestral.Click += BtnSemestral_Click;
             Controls.Add(btnSemestral);
@@ -119,10 +142,10 @@ namespace CalculadoraMedias.Desktop
             btnLimparSemestral = new Button
             {
                 Text = "Limpar Semestral",
-                Left = 160,
-                Top = 330,
-                Width = 140,
-                Height = 35
+                Left = 190,
+                Top = 415,
+                Width = 145,
+                Height = 38
             };
             btnLimparSemestral.Click += BtnLimparSemestral_Click;
             Controls.Add(btnLimparSemestral);
@@ -130,10 +153,11 @@ namespace CalculadoraMedias.Desktop
             btnFinal = new Button
             {
                 Text = "Final",
-                Left = 310,
-                Top = 330,
-                Width = 80,
-                Height = 35
+                Left = 345,
+                Top = 415,
+                Width = 90,
+                Height = 38,
+                BackColor = Color.LightGreen
             };
             btnFinal.Click += BtnFinal_Click;
             Controls.Add(btnFinal);
@@ -141,13 +165,84 @@ namespace CalculadoraMedias.Desktop
             btnLimparFinal = new Button
             {
                 Text = "Limpar Final",
-                Left = 400,
-                Top = 330,
-                Width = 100,
-                Height = 35
+                Left = 445,
+                Top = 415,
+                Width = 120,
+                Height = 38
             };
             btnLimparFinal.Click += BtnLimparFinal_Click;
             Controls.Add(btnLimparFinal);
+        }
+
+        private void CriarLogoUnip()
+        {
+            string caminhoLogo = ObterCaminhoLogo();
+
+            if (File.Exists(caminhoLogo))
+            {
+                picLogo = new PictureBox
+                {
+                    Left = 45,
+                    Top = 18,
+                    Width = 105,
+                    Height = 65,
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                    Image = Image.FromFile(caminhoLogo),
+                    BackColor = Color.Transparent
+                };
+
+                Controls.Add(picLogo);
+            }
+            else
+            {
+                Label lblLogoFallback = new Label
+                {
+                    Text = "UNIP",
+                    Left = 45,
+                    Top = 25,
+                    Width = 105,
+                    Height = 50,
+                    Font = new Font("Segoe UI", 20, FontStyle.Bold),
+                    ForeColor = Color.DarkBlue,
+                    TextAlign = ContentAlignment.MiddleCenter
+                };
+
+                Controls.Add(lblLogoFallback);
+            }
+        }
+
+        private static string ObterCaminhoLogo()
+        {
+            string caminhoSaida = Path.Combine(
+                AppContext.BaseDirectory,
+                "Assets",
+                "unip-logo.png"
+            );
+
+            if (File.Exists(caminhoSaida))
+            {
+                return caminhoSaida;
+            }
+
+            string caminhoProjetoPelaSolution = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "CalculadoraMedias.Desktop",
+                "Assets",
+                "unip-logo.png"
+            );
+
+            if (File.Exists(caminhoProjetoPelaSolution))
+            {
+                return caminhoProjetoPelaSolution;
+            }
+
+            string caminhoProjetoAtual = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "Assets",
+                "unip-logo.png"
+            );
+
+            return caminhoProjetoAtual;
         }
 
         private void ConfigurarEstadoInicial()
@@ -280,6 +375,34 @@ namespace CalculadoraMedias.Desktop
             }
         }
 
+        private static void PermitirApenasNumerosEVirgula(object? sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+            {
+                return;
+            }
+
+            if (char.IsDigit(e.KeyChar))
+            {
+                return;
+            }
+
+            if (e.KeyChar == ',' || e.KeyChar == '.')
+            {
+                if (sender is TextBox textBox)
+                {
+                    bool jaTemSeparador = textBox.Text.Contains(',') || textBox.Text.Contains('.');
+
+                    if (!jaTemSeparador)
+                    {
+                        return;
+                    }
+                }
+            }
+
+            e.Handled = true;
+        }
+
         private static decimal ConverterNota(string texto, string nomeCampo)
         {
             if (string.IsNullOrWhiteSpace(texto))
@@ -319,7 +442,7 @@ namespace CalculadoraMedias.Desktop
                 Text = texto,
                 Left = x,
                 Top = y + 4,
-                Width = 150,
+                Width = 160,
                 Height = 25,
                 Font = new Font("Segoe UI", 9, FontStyle.Regular)
             };
@@ -335,7 +458,7 @@ namespace CalculadoraMedias.Desktop
             {
                 Left = x,
                 Top = y,
-                Width = 220,
+                Width = 240,
                 Height = 25,
                 Font = new Font("Segoe UI", 9, FontStyle.Regular)
             };
